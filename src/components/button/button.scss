@@ -1,0 +1,245 @@
+$kui-button-height: 36px;
+$kui-button-border-color: #d9d9d9;
+$kui-button-color: #333;
+$kui-button-primary: #39A2DB;
+$kui-button-info: #D2D3C9;
+$kui-button-success: #0E918C;
+$kui-button-warning: #F6830F;
+$kui-button-error: #FF4848;
+$kui-button-radius: 4px;
+$kui-button-disabled-color: #E8F0F2;
+
+$kui-button-normal-config: (
+  default: (
+    color: $kui-button-color,
+    border-color: $kui-button-border-color
+  ),
+  primary: (
+    background-color: $kui-button-primary,
+    border-color: $kui-button-primary
+  ),
+  info: (
+    background-color: $kui-button-info,
+    border-color: $kui-button-info
+  ),
+  success: (
+    background-color: $kui-button-success,
+    border-color: $kui-button-success
+  ),
+  warning: (
+    background-color: $kui-button-warning,
+    border-color: $kui-button-warning
+  ),
+  error: (
+    background-color: $kui-button-error,
+    border-color: $kui-button-error
+  ),
+  large: (
+    padding: 0 23px,
+    height: 40px,
+    font-size: 14px
+  ),
+  medium: (
+    padding: 0 20px,
+    height: 36px,
+    font-size: 14px
+  ),
+  small: (
+    padding: 0 15px,
+    height: 32px,
+    font-size: 12px
+  ),
+  mini: (
+    padding: 0 15px,
+    height: 28px,
+    font-size: 12px
+  )
+);
+
+$kui-button-pseudo-config: (
+  default: (
+    hover: (
+      color: $kui-button-primary,
+      border-color: $kui-button-primary
+    ),
+    focus: (
+      color: $kui-button-primary,
+      border-color: $kui-button-primary
+    ),
+    active: (
+      color: $kui-button-primary,
+      border-color: $kui-button-primary
+    )
+  ),
+  primary: (
+    hover: (
+      background-color: lighten($kui-button-primary, 10%),
+      border-color: lighten($kui-button-primary, 10%)
+    ),
+    focus: (
+      background-color: lighten($kui-button-primary, 10%),
+      border-color: lighten($kui-button-primary, 10%)
+    ),
+    active: (
+      background-color: lighten($kui-button-primary, 10%),
+      border-color: lighten($kui-button-primary, 10%)
+    )
+  ),
+  info: (
+    hover: (
+      background-color: lighten($kui-button-info, 10%),
+      border-color: lighten($kui-button-info, 10%)
+    ),
+    focus: (
+      background-color: lighten($kui-button-info, 10%),
+      border-color: lighten($kui-button-info, 10%)
+    ),
+    active: (
+      background-color: lighten($kui-button-info, 10%),
+      border-color: lighten($kui-button-info, 10%)
+    )
+  ),
+  success: (
+    hover: (
+      background-color: lighten($kui-button-success, 10%),
+      border-color: lighten($kui-button-success, 10%)
+    ),
+    focus: (
+      background-color: lighten($kui-button-success, 10%),
+      border-color: lighten($kui-button-success, 10%)
+    ),
+    active: (
+      background-color: lighten($kui-button-success, 10%),
+      border-color: lighten($kui-button-success, 10%)
+    )
+  ),
+  warning: (
+    hover: (
+      background-color: lighten($kui-button-warning, 10%),
+      border-color: lighten($kui-button-warning, 10%)
+    ),
+    focus: (
+      background-color: lighten($kui-button-warning, 10%),
+      border-color: lighten($kui-button-warning, 10%)
+    ),
+    active: (
+      background-color: lighten($kui-button-warning, 10%),
+      border-color: lighten($kui-button-warning, 10%)
+    )
+  ),
+  error: (
+    hover: (
+      background-color: lighten($kui-button-error, 10%),
+      border-color: lighten($kui-button-error, 10%)
+    ),
+    focus: (
+      background-color: lighten($kui-button-error, 10%),
+      border-color: lighten($kui-button-error, 10%)
+    ),
+    active: (
+      background-color: lighten($kui-button-error, 10%),
+      border-color: lighten($kui-button-error, 10%)
+    )
+  )
+);
+
+.kui-button {
+  box-sizing: border-box;
+  height: $kui-button-height;
+  padding: 0 20px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  background: #fff;
+  color: #fff;
+  border: 1px solid $kui-button-border-color;
+  border-radius: $kui-button-radius;
+  box-shadow: 0 1px 0 fade-out(black, 0.95);
+  & + & {
+    margin-left: 8px;
+  }
+  @each $type in primary, info, success, warning, error, default, large, medium, small, mini {
+    &.kui-button--#{$type} {
+      @each $key, $value in map-get($kui-button-normal-config, $type) {
+        #{$key}: $value;
+      }
+    }
+  }
+  @each $type in primary, info, success, warning, error, default {
+    &.kui-button--#{$type} {
+      &[disabled] {
+        cursor: not-allowed;
+        @each $key, $value in map-get($kui-button-normal-config, $type) {
+          #{$key}: lighten($value, 20%);
+        }
+      }
+      @each $pseudo, $value in map-get($kui-button-pseudo-config, $type) {
+        &:#{$pseudo} {
+          @each $key, $value2 in map-get(map-get($kui-button-pseudo-config, $type), $pseudo) {
+            #{$key}: $value2;
+          }
+        }
+        &[disabled]:#{$pseudo} {
+          @each $key, $value2 in map-get(map-get($kui-button-pseudo-config, $type), $pseudo) {
+            #{$key}: lighten($value2, 10%);
+          }
+        }
+      }
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+  &.kui-button--default[disabled] {
+    background-color: $kui-button-disabled-color;
+    border-color: $kui-button-disabled-color;
+    &:hover, &:focus {
+      background-color: $kui-button-disabled-color;
+      border-color: $kui-button-disabled-color;
+      color: lighten($kui-button-color, 20%);
+    }
+  }
+  //&.quick-theme-link{
+  //  border-color: transparent;
+  //  box-shadow: none;
+  //  color: $kui-button-primary;
+  //  &:hover,&:focus{
+  //    color: lighten($kui-button-primary, 10%);
+  //  }
+  //}
+  //&.quick-theme-text{
+  //  border-color: transparent;
+  //  box-shadow: none;
+  //  color: inherit;
+  //  &:hover,&:focus{
+  //    background: darken(white, 5%);
+  //  }
+  //}
+  //&.quick-theme-button{
+  //  &.quick-size-big{
+  //    font-size: 24px;
+  //    height: 48px;
+  //    padding: 0 16px;
+  //  }
+  //  &.quick-size-small{
+  //    font-size: 12px;
+  //    height: 20px;
+  //    padding: 0 4px;
+  //  }
+  //}
+  //&.quick-size-big {
+  //  font-size: 24px;
+  //  height: 48px;
+  //  padding: 0 16px;
+  //}
+  //&.quick-size-small {
+  //  font-size: 12px;
+  //  height: 20px;
+  //  padding: 0 4px;
+  //}
+}
