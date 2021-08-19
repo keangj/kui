@@ -41,11 +41,9 @@ const Button = defineComponent({
   render () {
     const { $slots, classes, disabled } = this
     return (
-      <>
-        <button class={classes} disabled={disabled} onClick={this.handleClick}>
-          {$slots.default?.()}
-        </button>
-      </>
+      <button class={classes} disabled={disabled} onClick={this.handleClick}>
+        {$slots.default?.()}
+      </button>
     )
   }
 })
