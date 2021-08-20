@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { defineComponent } from 'vue'
 import Button from '../components/button/button'
+import KButtonGroup from '../components/button/button-group'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -33,6 +34,14 @@ export default defineComponent({
         <Button type="success" size="mini">
           提交
         </Button>
+        <KButtonGroup>
+          <div>123</div>
+          <Button type="success">提交</Button>
+          <Button type="info">提交</Button>
+          <Button type="error">提交</Button>
+          <Button>提交</Button>
+          <Button>提交</Button>
+        </KButtonGroup>
       </>
     )
   }
