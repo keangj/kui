@@ -22,7 +22,7 @@ export type ButtonProps = ExtractPropTypes<typeof buttonProps>
 const Button = defineComponent({
   name: 'KButton',
   props: buttonProps,
-  // emits: ['click'],
+  emits: ['click'],
   setup (props, { emit }) {
     const handleClick = (event: MouseEvent) => {
       emit('click', event)

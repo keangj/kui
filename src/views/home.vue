@@ -27,7 +27,7 @@ export default defineComponent({
         <Button type="warning" size="large" disabled>
           提交
         </Button>
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" disabled>
           提交
         </Button>
         <Button type="info" size="small">
@@ -48,11 +48,11 @@ export default defineComponent({
           disabled
           background-color={{ active: '#0E918C', inactive: '#FF4848' }}
         />
-        <KSwitch v-model={[this.switchValue, 'value']} disabled />
-        <KSwitch v-model={[this.switchValue, 'value']} size="large" />
-        <KSwitch v-model={[this.switchValue, 'value']} size="medium" />
-        <KSwitch v-model={[this.switchValue, 'value']} size="small" />
-        <KSwitch v-model={[this.switchValue, 'value']} size="mini" />
+        <KSwitch v-model={this.switchValue} disabled />
+        <KSwitch v-model={this.switchValue} size="large" />
+        <KSwitch v-model={this.switchValue} size="medium" />
+        <KSwitch v-model={this.switchValue} size="small" />
+        <KSwitch v-model={this.switchValue} size="mini" />
       </>
     )
   }

@@ -16,7 +16,7 @@ interface ISwitchBackgroundColor {
   inactive: string
 }
 const switchProps = {
-  value: Boolean,
+  modelValue: Boolean,
   disabled: Boolean,
   size: String as ISwitchSize,
   backgroundColor: Object as PropType<ISwitchBackgroundColor>
@@ -27,29 +27,30 @@ export type SwitchProps = ExtractPropTypes<typeof switchProps>
 const Switch = defineComponent({
   name: 'KSwitch',
   props: switchProps,
+  emits: ['update:modelValue'],
   setup (props: SwitchProps, { emit }) {
     const switchButton = ref<HTMLButtonElement | null>(null)
     const toggle = () => {
-      emit('update:value', !props.value)
+      emit('update:modelValue', !props.modelValue)
     }
     const classes = computed(() => {
       return [
         'kui-switch',
-        props.value && 'checked',
+        props.modelValue && 'checked',
         props.size && `kui-switch--${props.size}`
       ]
     })
     const setBackgroundColor = () => {
       const switchElement = switchButton.value
       if (props.backgroundColor && switchElement) {
-        switchElement.style.backgroundColor = props.value
+        switchElement.style.backgroundColor = props.modelValue
           ? props.backgroundColor.active
           : props.backgroundColor.inactive
       }
     }
 
-    const { value } = toRefs(props)
-    watch(value, () => {
+    const { modelValue } = toRefs(props)
+    watch(modelValue, () => {
       if (props.backgroundColor) {
         setBackgroundColor()
       }
