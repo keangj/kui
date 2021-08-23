@@ -1,17 +1,19 @@
 <script lang="tsx">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Button from '../components/button/button'
 import KButtonGroup from '../components/button/button-group'
+import KSwitch from '../components/switch/switch'
 export default defineComponent({
   name: 'Home',
   components: {
     Button
   },
   setup () {
+    const switchValue = ref(false)
     const onClick = () => {
       console.log(123)
     }
-    return { onClick }
+    return { onClick, switchValue }
   },
   render () {
     const { onClick } = this
@@ -35,13 +37,22 @@ export default defineComponent({
           提交
         </Button>
         <KButtonGroup>
-          <div>123</div>
           <Button type="success">提交</Button>
           <Button type="info">提交</Button>
           <Button type="error">提交</Button>
           <Button>提交</Button>
           <Button>提交</Button>
         </KButtonGroup>
+        <KSwitch
+          v-model={[this.switchValue, 'value']}
+          disabled
+          background-color={{ active: '#0E918C', inactive: '#FF4848' }}
+        />
+        <KSwitch v-model={[this.switchValue, 'value']} disabled />
+        <KSwitch v-model={[this.switchValue, 'value']} size="large" />
+        <KSwitch v-model={[this.switchValue, 'value']} size="medium" />
+        <KSwitch v-model={[this.switchValue, 'value']} size="small" />
+        <KSwitch v-model={[this.switchValue, 'value']} size="mini" />
       </>
     )
   }

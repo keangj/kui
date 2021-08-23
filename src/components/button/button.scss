@@ -7,7 +7,7 @@ $kui-button-success: #0E918C;
 $kui-button-warning: #F6830F;
 $kui-button-error: #FF4848;
 $kui-button-radius: 4px;
-$kui-button-disabled-color: #E8F0F2;
+$kui-disabled-color: #E8F0F2;
 
 $kui-button-normal-config: (
   default: (
@@ -193,11 +193,11 @@ $kui-button-pseudo-config: (
     border: 0;
   }
   &.kui-button--default[disabled] {
-    background-color: $kui-button-disabled-color;
-    border-color: $kui-button-disabled-color;
+    background-color: $kui-disabled-color;
+    border-color: $kui-disabled-color;
     &:hover, &:focus {
-      background-color: $kui-button-disabled-color;
-      border-color: $kui-button-disabled-color;
+      background-color: $kui-disabled-color;
+      border-color: $kui-disabled-color;
       color: lighten($kui-button-color, 20%);
     }
   }

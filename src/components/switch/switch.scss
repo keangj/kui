@@ -1,0 +1,111 @@
+@use "sass:math";
+$h: 22px;
+$h2: $h - 4px;
+$large-height: $h + 8;
+$medium-height: $h + 4;
+$small-height: $h;
+$mini-height: $h - 4;
+$kui-disabled-color: #E8F0F2;
+
+$kui-switch-height-config: (
+  large: $large-height,
+  medium: $medium-height,
+  small: $small-height,
+  mini: $mini-height
+);
+
+$kui-switch-size-config: (
+  large: (
+    height: $large-height,
+    width: ($large-height)* 2,
+    border-radius: math.div($large-height, 2),
+    font-size: 14px
+  ),
+  medium: (
+    height: $medium-height,
+    width: ($medium-height) * 2,
+    border-radius: math.div($medium-height, 2),
+    font-size: 14px
+  ),
+  small: (
+    height: $small-height,
+    width: $small-height * 2,
+    border-radius: math.div($small-height, 2),
+    font-size: 12px
+  ),
+  mini: (
+    height: $mini-height,
+    width: ($mini-height)* 2,
+    border-radius: math.div($mini-height, 2),
+    font-size: 12px
+  )
+);
+
+.kui-switch {
+  height: $h;
+  width: $h * 2;
+  border: none;
+  background: #bfbfbf;
+  border-radius: math.div($h, 2);
+  position: relative;
+  > span {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: $h2;
+    width: $h2;
+    background:white;
+    border-radius: math.div($h2, 2);
+    transition: left 250ms;
+  }
+  &.checked {
+    background: #39A2DB;
+    > span {
+      left: calc(100% - #{$h2} - 2px);
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    > span { width: $h2 + 4px; }
+  }
+  &.checked:active {
+    > span { width: $h2 + 4px; margin-left: -4px; }
+  }
+
+  @each $type in large, medium, small, mini {
+    &.kui-switch--#{$type} {
+      @each $key, $value in map-get($kui-switch-size-config, $type) {
+        #{$key}: $value;
+      }
+      $span-height: map-get($kui-switch-height-config, $type) - 4;
+      > span {
+        height: $span-height;
+        width: $span-height;
+        border-radius: math.div(map-get($kui-switch-height-config, $type), 2);
+      }
+      &.checked {
+        > span {
+          left: calc(100% - #{$span-height} - 2px);
+        }
+      }
+      &:active {
+        > span { width: $span-height + 4px; }
+      }
+      &.checked:active {
+        > span { width: $span-height + 4px; margin-left: -4px; }
+      }
+    }
+  }
+  &.kui-switch[disabled] {
+    cursor: not-allowed;
+    background-color: $kui-disabled-color;
+    border-color: $kui-disabled-color;
+    //&:hover, &:focus {
+    //  background-color: $kui-disabled-color;
+    //  border-color: $kui-disabled-color;
+    //  color: lighten($kui-button-color, 20%);
+    //}
+  }
+}
