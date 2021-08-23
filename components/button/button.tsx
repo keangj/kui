@@ -39,9 +39,10 @@ const Button = defineComponent({
     return { classes, handleClick }
   },
   render () {
-    const { $slots, classes, disabled } = this
+    const { $slots, classes, disabled, loading } = this
     return (
       <button class={classes} disabled={disabled} onClick={this.handleClick}>
+        {loading && <span class="kui-loadingIndicator" />}
         {$slots.default?.()}
       </button>
     )

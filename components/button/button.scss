@@ -201,4 +201,19 @@ $kui-button-pseudo-config: (
       color: lighten($kui-button-color, 20%);
     }
   }
+  > .kui-loadingIndicator{
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: $kui-button-primary $kui-button-primary $kui-button-primary transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: button-spin 1s infinite linear;
+  }
+  @keyframes button-spin {
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(360deg)}
+  }
 }
