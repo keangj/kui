@@ -11,7 +11,6 @@ import {
 import './switch.scss'
 
 type ISwitchSize = PropType<'large' | 'medium' | 'small' | 'mini'>
-// type ISwitchBackgroundColor = { active: string, inactive: string }
 interface ISwitchBackgroundColor {
   active: string
   inactive: string
