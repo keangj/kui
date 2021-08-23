@@ -3,6 +3,7 @@ import { defineComponent, ref } from 'vue'
 import Button from '../../components/button/button'
 import KButtonGroup from '../../components/button/button-group'
 import KSwitch from '../../components/switch/switch'
+import KIcon from '../../components/icon/icon'
 export default defineComponent({
   name: 'Home',
   components: {
@@ -19,7 +20,9 @@ export default defineComponent({
     const { onClick } = this
     return (
       <>
-        <Button onClick={onClick}>提交</Button>
+        <Button loading={true} onClick={onClick}>
+          提交
+        </Button>
         <Button disabled>提交</Button>
         <Button type="error" disabled>
           提交
@@ -53,6 +56,7 @@ export default defineComponent({
         <KSwitch v-model={this.switchValue} size="medium" />
         <KSwitch v-model={this.switchValue} size="small" />
         <KSwitch v-model={this.switchValue} size="mini" />
+        <KIcon name="icon-loading" fill="red" size={16} />
       </>
     )
   }
