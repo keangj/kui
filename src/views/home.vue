@@ -1,8 +1,8 @@
 <script lang="tsx">
 import { defineComponent, ref } from 'vue'
-import Button from '../components/button/button'
-import KButtonGroup from '../components/button/button-group'
-import KSwitch from '../components/switch/switch'
+import Button from '../../components/button/button'
+import KButtonGroup from '../../components/button/button-group'
+import KSwitch from '../../components/switch/switch'
 export default defineComponent({
   name: 'Home',
   components: {

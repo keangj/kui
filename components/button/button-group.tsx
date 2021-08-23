@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import './button-group.scss'
 import Button from './button'
+import './button-group.scss'
 
 const ButtonGroup = defineComponent({
   name: 'KButtonGroup',
