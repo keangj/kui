@@ -25,7 +25,9 @@ const Button = defineComponent({
   emits: ['click'],
   setup (props, { emit }) {
     const handleClick = (event: MouseEvent) => {
-      emit('click', event)
+      if (!props.loading) {
+        emit('click', event)
+      }
       // const { onClick } = props
       // onClick?.(event)
     }
@@ -42,7 +44,7 @@ const Button = defineComponent({
     const { $slots, classes, disabled, loading } = this
     return (
       <button class={classes} disabled={disabled} onClick={this.handleClick}>
-        {loading && <span class="kui-loadingIndicator" />}
+        {loading && <i class="kui-loadingIndicator" />}
         {$slots.default?.()}
       </button>
     )

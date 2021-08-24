@@ -67,24 +67,17 @@ describe('button', () => {
     expect(inst.find('button').attributes().disabled).toBeDefined()
   })
 
-  it('button group', () => {
-    const inst = mount(KButtonGroup, {
-      slots: {
-        default: () => [
-          h(KButton, null, {
-            default: () => 'test1'
-          }),
-          h(KButton, null, {
-            default: () => 'test2'
-          }),
-          h(KButton, null, {
-            default: () => 'test3'
-          })
-        ]
+  it('loading', async () => {
+    const onClick = jest.fn()
+    const inst = mount(KButton, {
+      props: {
+        loading: true,
+        onClick
       }
     })
-    expect(inst.classes()).toContain('kui-button-group')
-    expect(inst.findAll('button').length).toBe(3)
+    await inst.find('button').trigger('click')
+    expect(onClick).not.toHaveBeenCalled()
+    expect(inst.find('button i').classes()).toContain('kui-loadingIndicator')
   })
 })
 
@@ -99,6 +92,11 @@ describe('Button Group', () => {
   //     'k-button': KButton
   //   }
   // }
+
+  it('exist', () => {
+    mount(KButtonGroup)
+  })
+
   it('create', () => {
     const inst = mount(KButtonGroup, {
       slots: {
@@ -118,6 +116,7 @@ describe('Button Group', () => {
     expect(inst.classes()).toContain('kui-button-group')
     expect(inst.findAll('button').length).toBe(3)
   })
+
   // it('create', () => {
   //   const inst = mount(TestComponent)
   //   expect(inst.classes()).toContain('kui-button-group')
