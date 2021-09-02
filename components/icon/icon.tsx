@@ -28,7 +28,7 @@ const Icon = defineComponent({
     const { classes, name, styles } = this
     return (
       <svg class={classes} aria-hidden="true" style={styles}>
-        <use xlink:href={`#${name}`} />
+        <use xlinkHref={`#${name}`} />
       </svg>
     )
   }
