@@ -4,17 +4,21 @@ import Button from '../../components/button/button'
 import KButtonGroup from '../../components/button/button-group'
 import KSwitch from '../../components/switch/switch'
 import KIcon from '../../components/icon/icon'
+import KTabs from '../../components/tabs/tabs'
+import KTabPane from '../../components/tabs/tab-pane'
+
 export default defineComponent({
-  name: 'Home',
+  name: 'HomePage',
   components: {
     Button
   },
   setup () {
     const switchValue = ref(false)
+    const selected = ref('h1')
     const onClick = () => {
       console.log(123)
     }
-    return { onClick, switchValue }
+    return { onClick, switchValue, selected }
   },
   render () {
     const { onClick } = this
@@ -57,6 +61,21 @@ export default defineComponent({
         <KSwitch v-model={this.switchValue} size="small" />
         <KSwitch v-model={this.switchValue} size="mini" />
         <KIcon name="icon-loading" fill="red" size={16} />
+
+        <KTabs v-model={this.selected}>
+          <KTabPane title="one" name="1">
+            hello
+          </KTabPane>
+          <KTabPane title="two" name="2">
+            world
+          </KTabPane>
+          <KTabPane title="haha" name="h1">
+            hi
+          </KTabPane>
+          <KTabPane title="hehe" name="h2">
+            hello
+          </KTabPane>
+        </KTabs>
       </>
     )
   }
